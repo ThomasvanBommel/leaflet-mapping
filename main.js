@@ -5,10 +5,26 @@ let cur_coord;
 let geo_json;
 let mines;
 
+let mine_showing = [0, 99];
+
 window.onload = () => {
     map = L.map("map").setView([44.88502667909841, -65.16840650198439], 17);
     geo_json = L.geoJSON();
     mines = L.geoJSON();
+
+    try{
+        let params = new URLSearchParams(window.location.search);
+        let showing = params.get("show");
+
+        if(showing){
+            let split = showing.split(",");
+            mine_showing = [ parseInt(split[0]), parseInt(split[1])];
+        }
+    }catch{
+        console.error("unable to load url param 'show'");
+    }
+
+    console.log("showing mines:", mine_showing);
 
     // Setup base maps
     let base_maps = {
@@ -44,8 +60,8 @@ window.onload = () => {
     xhr.onload = (res) => { 
         console.log("loading finished -", xhr.response);
 
-        geo_json.addData(
-            xhr.response.features.slice(0, 99),
+        mines.addData(
+            xhr.response.features.slice(...mine_showing),
             {
                 onEachFeature: function (f, l) {
                     l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
