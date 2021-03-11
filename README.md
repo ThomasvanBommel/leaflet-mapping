@@ -10,4 +10,4 @@ Mapping application made using [Leaflet](https://leafletjs.com)
 or 
 
 
- <!-- - View on [github-pages](https://thomasvanbommel.github.io/open-layers-mapping/) -->
+ - View on [github-pages](https://thomasvanbommel.github.io/leaflet-mapping/)

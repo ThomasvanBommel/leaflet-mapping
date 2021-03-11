@@ -39,7 +39,7 @@ window.onload = () => {
 
     let xhr = new XMLHttpRequest();
     xhr.addEventListener("load", (res) => { console.log("loaded"); });
-    xhr.open("GET", "/d010nssh.geojson", true);
+    xhr.open("GET", "/leaflet-mapping/d010nssh.geojson", true);
     xhr.send();
 
     // let reader = new FileReader();
