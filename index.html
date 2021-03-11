@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Leaflet Mapping</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Website interaction -->
+    <script src="main.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Mapping Application</h1>
+
+        <!-- GeoJSON controls -->
+        <div id="json_controls">
+            <div>
+                <p style="display: inline-block">Create GEO Json:</p>
+                <button onclick="makePoint(this)">Point</button>
+                <button onclick="makeLineString(this)">Line String</button>
+                <button onclick="makePolygon(this)">Polygon</button>
+            </div>
+        </div>
+
+        <!-- Open layers logo -->
+        <div id="logo">
+            <a href="https://leafletjs.com">
+                <img src="https://leafletjs.com/docs/images/logo.png" />
+            </a>
+        </div>
+    </header>
+
+    <!-- Map -->
+    <main id="map" class="map">
+
+        <!-- Map coordinates -->
+        <div id="map_coords">
+            <small>
+                <h4>Map Center:</h4>
+                <p>
+                    Long: <span class="long">--</span>
+                </p>
+                <p>
+                    Lat : <span class="lat">--</span>
+                </p>
+            </small>
+        </div>
+
+        <!-- Cursor coordinates -->
+        <div id="cur_coords">
+            <small>
+                <p>
+                    Long: <span class="long">--</span>
+                </p>
+                <p>
+                    Lat : <span class="lat">--</span>
+                </p>
+            </small>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>&copy; Thomas vanBommel</footer>
+</body>
+</html>
