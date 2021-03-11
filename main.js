@@ -38,8 +38,9 @@ window.onload = () => {
     };
 
     let xhr = new XMLHttpRequest();
-    xhr.addEventListener("load", (res) => { console.log("loaded", res); });
+    xhr.onload = (res) => { console.log("loaded", res.response); };
     xhr.open("GET", "/leaflet-mapping/d010nssh.geojson", true);
+    xhr.responseType = "json";
     xhr.send();
 
     // let reader = new FileReader();
