@@ -40,7 +40,7 @@ window.onload = () => {
     let xhr = new XMLHttpRequest();
     xhr.onload = (res) => { 
         console.log("loading done -", xhr.response);
-        geo_json.addData(xhr.response);
+        geo_json.addData(xhr.response.features.slice(0, 99));
     };
     xhr.open("GET", "/leaflet-mapping/d010nssh.geojson", true);
     xhr.responseType = "json";
