@@ -1,6 +1,6 @@
 # Mapping Application
 
-Mapping application made using [OpenLayers](https://openlayers.org/)
+Mapping application made using [Leaflet](https://leafletjs.com)
 
 ## How to run
 
@@ -10,4 +10,4 @@ Mapping application made using [OpenLayers](https://openlayers.org/)
 or 
 
 
- - View on [github-pages](https://thomasvanbommel.github.io/open-layers-mapping/)
+ <!-- - View on [github-pages](https://thomasvanbommel.github.io/open-layers-mapping/) -->
