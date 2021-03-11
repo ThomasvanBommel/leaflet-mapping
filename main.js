@@ -3,10 +3,12 @@ let map_coord;
 let cur_coord;
 
 let geo_json;
+let mines;
 
 window.onload = () => {
     map = L.map("map").setView([44.88502667909841, -65.16840650198439], 17);
     geo_json = L.geoJSON();
+    mines = L.geoJSON();
 
     // Setup base maps
     let base_maps = {
@@ -34,30 +36,26 @@ window.onload = () => {
 
     // Setup overlays
     let overlays = {
-        "GEO JSON": geo_json
+        "GEO JSON": geo_json,
+        "Mines": mines
     };
 
     let xhr = new XMLHttpRequest();
     xhr.onload = (res) => { 
-        console.log("loading done -", xhr.response);
-        geo_json.addData(xhr.response.features.slice(0, 99));
+        console.log("loading finished -", xhr.response);
+
+        geo_json.addData(
+            xhr.response.features.slice(0, 99),
+            {
+                onEachFeature: function (f, l) {
+                    l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+                }
+            }
+        );
     };
     xhr.open("GET", "/leaflet-mapping/d010nssh.geojson", true);
     xhr.responseType = "json";
     xhr.send();
-
-    L.geoJSON(data, {
-        onEachFeature: function (f, l) {
-            l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
-        }
-    }).addTo(map);
-
-    // let reader = new FileReader();
-    // reader.onload = e => {
-    //     console.log("loaded");
-    // };
-
-    // reader.readAsText("d010nssh.geojson");
 
     // Add map and overlay options to map
     base_maps["OSM Default"].addTo(map);
@@ -65,6 +63,7 @@ window.onload = () => {
 
     // Create blank geo_json
     overlays["GEO JSON"].addTo(map);
+    overlays["Mines"].addTo(map);
 
     // Add scale bar
     L.control.scale().addTo(map);
