@@ -10,7 +10,12 @@ let mine_showing = [0, 99];
 window.onload = () => {
     map = L.map("map").setView([44.88502667909841, -65.16840650198439], 17);
     geo_json = L.geoJSON();
-    mines = L.geoJSON();
+    mines = L.geoJSON(undefined, {
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup(`<pre>${feature.properties.ShaftID}</pre>`);
+            // l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+        }
+    });
 
     try{
         let params = new URLSearchParams(window.location.search);
@@ -61,13 +66,7 @@ window.onload = () => {
         console.log("loading finished -", xhr.response);
 
         mines.addData(
-            xhr.response.features.slice(...mine_showing),
-            {
-                onEachFeature: function (feature, layer) {
-                    layer.bindPopup(`<pre>${feature.properties.ShaftID}</pre>`);
-                    // l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
-                }
-            }
+            xhr.response.features.slice(...mine_showing)
         );
     };
     xhr.open("GET", "/leaflet-mapping/d010nssh.geojson", true);
