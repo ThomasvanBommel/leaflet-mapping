@@ -12,7 +12,7 @@ window.onload = () => {
     geo_json = L.geoJSON();
     mines = L.geoJSON(undefined, {
         onEachFeature: function (feature, layer) {
-            layer.bindPopup(`<pre>${feature.properties.ShaftID}</pre>`);
+            layer.bindPopup(`<pre>${JSON.stringify(feature.properties)}</pre>`);
             // l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
         }
     });
