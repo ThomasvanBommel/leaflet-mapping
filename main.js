@@ -12,11 +12,10 @@ window.onload = () => {
     geo_json = L.geoJSON();
     mines = L.geoJSON(undefined, {
         onEachFeature: function (feature, layer) {
-            let prop = feature.properties;
 
             layer.bindPopup(`<pre>${JSON.stringify((
                 ({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location})
-            )(object)).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</pre>`);
+            )(feature.properties)).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</pre>`);
             // l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
         }
     });
