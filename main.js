@@ -63,8 +63,9 @@ window.onload = () => {
         mines.addData(
             xhr.response.features.slice(...mine_showing),
             {
-                onEachFeature: function (f, l) {
-                    l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+                onEachFeature: function (feature, layer) {
+                    layer.bindPopup(`<pre>${JSON.stringify(feature.properties)}</pre>`);
+                    // l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
                 }
             }
         );
