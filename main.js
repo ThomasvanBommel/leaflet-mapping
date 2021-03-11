@@ -8,11 +8,11 @@ let mines;
 let mine_showing = [0, 99];
 
 window.onload = () => {
-    map = L.map("map").setView([44.88502667909841, -65.16840650198439], 17);
+    map = L.map("map").setView([45.20139, -63.24829], 10);
     geo_json = L.geoJSON();
     mines = L.geoJSON(undefined, {
         onEachFeature: function (feature, layer) {
-            layer.bindPopup(`<pre>${JSON.stringify(feature.properties)}</pre>`);
+            layer.bindPopup(`<pre>${JSON.stringify(feature.properties).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</pre>`);
             // l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
         }
     });
