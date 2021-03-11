@@ -64,7 +64,7 @@ window.onload = () => {
             xhr.response.features.slice(...mine_showing),
             {
                 onEachFeature: function (feature, layer) {
-                    layer.bindPopup(`<pre>${JSON.stringify(feature.properties)}</pre>`);
+                    layer.bindPopup(`<pre>${feature.properties.ShaftID}</pre>`);
                     // l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
                 }
             }
