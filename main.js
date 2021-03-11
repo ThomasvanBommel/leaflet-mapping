@@ -46,6 +46,12 @@ window.onload = () => {
     xhr.responseType = "json";
     xhr.send();
 
+    L.geoJSON(data, {
+        onEachFeature: function (f, l) {
+            l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+        }
+    }).addTo(map);
+
     // let reader = new FileReader();
     // reader.onload = e => {
     //     console.log("loaded");
