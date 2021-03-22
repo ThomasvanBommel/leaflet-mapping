@@ -87,14 +87,17 @@ window.onload = () => {
             // for(const [key, value] of Object.entries(props))
             //     if(!!!value) delete props[key];
 
-            let elements = "";
+            let elements = "<table class='popup'>";
 
             Object.entries(props).forEach(([key, value]) => {
-                if(!!value)
-                    elements += `<div><b>${ key }: </b>${ value }</div>`;
-            })
+                if(!!value && !value in ["Not Rated", "Unknown", "NOT INSPECTED"])
+                    elements += `<tr>
+                        <th>${ key }</th>
+                        <td>${ value }</td>
+                    </tr>`;
+            });
 
-            circle.bindPopup(elements);
+            circle.bindPopup(elements + "</table>");
         });
         // ${JSON.stringify(
             // props
