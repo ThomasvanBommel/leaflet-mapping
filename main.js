@@ -71,6 +71,9 @@ window.onload = () => {
         console.log("loading finished");
         console.log(xhr.response.features);
 
+        let props = xhr.response.features[0].properties;
+        console.log(props["Lat_WM84dd"], props["Lon_WM84dd"]);
+
         // L.circleMarker()
 
         // mines.addData(
