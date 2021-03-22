@@ -60,7 +60,7 @@ window.onload = () => {
     // pre_json.addData(ns);
     pre_json.addData({
         "type": "LineString",
-        "coordinates": [nspoints]
+        "coordinates": nspoints
     });
     // let tmp = [];
     // for(const latlng of ns.coordinates)
