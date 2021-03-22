@@ -71,7 +71,7 @@ window.onload = () => {
     let xhr = new XMLHttpRequest();
     xhr.onload = (res) => { 
         console.log("loading finished");
-        console.log(xhr.response.features[0].properties);
+        console.log(xhr.response.features[0]);
 
         xhr.response.features.forEach(feature => {
             let props = feature.properties;
@@ -90,11 +90,8 @@ window.onload = () => {
             let elements = "<table class='popup'>";
 
             Object.entries(props).forEach(([key, value]) => {
-                if(!!value && !value in ["Not Rated", "Unknown", "NOT INSPECTED"])
-                    elements += `<tr>
-                        <th>${ key }</th>
-                        <td>${ value }</td>
-                    </tr>`;
+                if(!!value)// && !value in ["Not Rated", "Unknown", "NOT INSPECTED"]
+                    elements += `<tr><th>${ key }</th><td>${ value }</td></tr>`;
             });
 
             circle.bindPopup(elements + "</table>");
