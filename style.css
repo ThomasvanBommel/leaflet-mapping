@@ -106,5 +106,8 @@ footer{
 .popup{
     max-width: 300px;
     max-height: 300px;
+}
+
+.scrolloverflow{
     overflow-y: scroll;
 }

@@ -4,9 +4,6 @@ let map_coord;
 let cur_coord;
 
 let geo_json;
-// let mines;
-
-// let mine_showing = [0, 99];
 
 window.onload = () => {
     map = L.map("map", { preferCanvas: true }).setView([45.20139, -63.24829], 8);
@@ -14,29 +11,6 @@ window.onload = () => {
 
     // renderer = L.
     geo_json = L.geoJSON();
-    // mines = L.geoJSON(undefined, {
-    //     onEachFeature: function (feature, layer) {
-
-    //         layer.bindPopup(`<pre>${JSON.stringify((
-    //             ({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location})
-    //         )(feature.properties)).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</pre>`);
-    //         // l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
-    //     }
-    // });
-
-    // try{
-    //     let params = new URLSearchParams(window.location.search);
-    //     let showing = params.get("show");
-
-    //     if(showing){
-    //         let split = showing.split(",");
-    //         mine_showing = [ parseInt(split[0]), parseInt(split[1])];
-    //     }
-    // }catch{
-    //     console.error("unable to load url param 'show'");
-    // }
-
-    // console.log("showing mines:", mine_showing);
 
     // Setup base maps
     let base_maps = {
@@ -84,35 +58,15 @@ window.onload = () => {
                 radius: 5
             }).addTo(map);
 
-            // for(const [key, value] of Object.entries(props))
-            //     if(!!!value) delete props[key];
-
-            let elements = "<table class='popup'>";
+            let elements = "<div class='scrolloverflow'><table class='popup'>";
 
             Object.entries(props).forEach(([key, value]) => {
-                if(!!value)// && !value in ["Not Rated", "Unknown", "NOT INSPECTED"]
+                if(!!value && !["Not Rated", "Unknown", "NOT INSPECTED"].includes(value))
                     elements += `<tr><th>${ key }</th><td>${ value }</td></tr>`;
             });
 
-            circle.bindPopup(elements + "</table>");
+            circle.bindPopup(elements + "</table><div>");
         });
-        // ${JSON.stringify(
-            // props
-            // (({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location}))(props)
-        // ).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}
-
-        
-        // console.log(latlon);
-
-        // L.circleMarker(latlon, {
-        //     color: "#ff00ff"
-        // }).addTo(map);
-
-        // L.circleMarker()
-
-        // mines.addData(
-        //     xhr.response.features.slice(...mine_showing)
-        // );
     };
     xhr.open("GET", "/leaflet-mapping/d010nssh.geojson", true);
     xhr.responseType = "json";
