@@ -1,15 +1,17 @@
 let map;
-// let renderer;
+let mine_renderer;
 let map_coord;
 let cur_coord;
 
 let geo_json;
-let mines;
+// let mines;
 
-let mine_showing = [0, 99];
+// let mine_showing = [0, 99];
 
 window.onload = () => {
     map = L.map("map", { preferCanvas: true }).setView([45.20139, -63.24829], 8);
+    mine_renderer = L.canvas();
+
     // renderer = L.
     geo_json = L.geoJSON();
     // mines = L.geoJSON(undefined, {
@@ -63,7 +65,7 @@ window.onload = () => {
     // Setup overlays
     let overlays = {
         "GEO JSON": geo_json,
-        // "Mines": mines
+        "Abandoned Mines": mine_renderer
     };
 
     let xhr = new XMLHttpRequest();
@@ -79,7 +81,7 @@ window.onload = () => {
                 opacity: 0.7,
                 weight: 1,
                 radius: 5
-            }).addTo(map);
+            }).addTo(mine_renderer);
 
             circle.bindPopup(`<pre>${JSON.stringify(
                 (({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location}))(props)
@@ -107,8 +109,11 @@ window.onload = () => {
     base_maps["OSM Default"].addTo(map);
     L.control.layers(base_maps, overlays).addTo(map);
 
-    // Create blank geo_json
-    overlays["Custom Geo Json"].addTo(map);
+    // Enable all overlays
+    for(const layer of Object.values(overlays))
+        layer.addTo(map);
+
+    // overlays["Custom Geo Json"].addTo(map);
     // overlays["Mines"].addTo(map);
 
     // Add scale bar
