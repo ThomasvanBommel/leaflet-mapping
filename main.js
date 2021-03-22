@@ -62,9 +62,10 @@ window.onload = () => {
 
             Object.entries(props).forEach(([key, value]) => {
                 if(!!value && !["Not Rated", "Unknown", "NOT INSPECTED", "0"].includes(value)){
-                    elements += `<tr><th>${ key }</th><td>${ 
-                        value.startsWith("http") ? "<a href='" + value + "'>" + value + "</a>" : value
-                    }</td></tr>`;
+                    if(typeof value === "string")
+                        value = value.startsWith("http") ? "<a href='" + value + "'>" + value + "</a>" : value;
+
+                    elements += `<tr><th>${ key }</th><td>${ value }</td></tr>`;
                 }
             });
 
