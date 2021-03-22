@@ -51,7 +51,7 @@ window.onload = () => {
     // pre_json.addData(ns);
     let tmp = [];
     for(const latlng of ns.coordinates)
-        tmp.push(L.coordsToLatLng(latlng));
+        tmp.push(L.latLng(latlng[0], latlng[1]));
 
     console.log(tmp);
     console.log(JSON.stringify(tmp));
