@@ -69,7 +69,7 @@ window.onload = () => {
     let xhr = new XMLHttpRequest();
     xhr.onload = (res) => { 
         console.log("loading finished");
-        console.log(xhr.response.features);
+        console.log(xhr.response.features[0].properties);
 
         xhr.response.features.forEach(feature => {
             let props = feature.properties;
@@ -80,9 +80,9 @@ window.onload = () => {
                 weight: 1
             }).addTo(map);
 
-            circle.bindPopup(`<pre>${JSON.stringify((
-                ({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location})
-            )(props)).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</pre>`);
+            circle.bindPopup(`<pre>${JSON.stringify(
+                (({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location}))(props)
+            ).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</pre>`);
         });
 
         
@@ -107,7 +107,7 @@ window.onload = () => {
     L.control.layers(base_maps, overlays).addTo(map);
 
     // Create blank geo_json
-    overlays["GEO JSON"].addTo(map);
+    overlays["Custom Geo Json"].addTo(map);
     // overlays["Mines"].addTo(map);
 
     // Add scale bar
