@@ -84,18 +84,25 @@ window.onload = () => {
         xhr.response.features.forEach(feature => {
             let props = feature.properties;
             let latlon = L.latLng(props["Lat_WM84dd"], props["Lon_WM84dd"]);
+
+            // Add marker to the map and renderer
             let circle = L.circleMarker(latlon, {
                 renderer: mine_renderer,
                 color: "#ff00ff",
-                opacity: 0.7,
+                opacity: 0.3,
                 weight: 1,
                 radius: 5
             }).addTo(map);
 
             let elements = "<div class='popupContainer'><table class='popup'>";
 
+            // Add clickable popup
             Object.entries(props).forEach(([key, value]) => {
+
+                // Only add value if not in the list below and is truthy
                 if(!!value && !["Not Rated", "Unknown", "NOT INSPECTED", "0"].includes(value)){
+
+                    // Convert urls to clickable <a> elements
                     if(typeof value === "string" && value.startsWith("http"))
                         value = "<a href='" + value + "'>" + value + "</a>";
 
@@ -103,6 +110,7 @@ window.onload = () => {
                 }
             });
 
+            // Bind marker to our popup element
             circle.bindPopup(elements + "</table><div>");
         });
     };
