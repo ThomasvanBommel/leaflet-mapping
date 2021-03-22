@@ -72,7 +72,7 @@ window.onload = () => {
         console.log(xhr.response.features);
 
         xhr.response.features.forEach(feature => {
-            let props = xhr.response.features[0].properties;
+            let props = feature.properties;
             let latlon = L.latLng(props["Lat_WM84dd"], props["Lon_WM84dd"]);
 
             L.circleMarker(latlon, {
