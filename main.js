@@ -84,14 +84,21 @@ window.onload = () => {
                 radius: 5
             }).addTo(map);
 
-            for(const [key, value] of Object.entries(props))
-                if(!!!value) delete props[key];
+            // for(const [key, value] of Object.entries(props))
+            //     if(!!!value) delete props[key];
 
-            circle.bindPopup(`<div class="popup">${JSON.stringify(
-                props
-                // (({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location}))(props)
-            ).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</div>`);
+            circle.bindPopup(`<div class="popup">${
+                Object.entries(props).forEach(([key, value]) => {
+                    if(!!!value){
+                        "<div><b>" + key + "</b>" + value + "</div>"
+                    }
+                })
+            }</div>`);
         });
+        // ${JSON.stringify(
+            // props
+            // (({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location}))(props)
+        // ).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}
 
         
         // console.log(latlon);
