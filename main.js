@@ -77,11 +77,12 @@ window.onload = () => {
             let props = feature.properties;
             let latlon = L.latLng(props["Lat_WM84dd"], props["Lon_WM84dd"]);
             let circle = L.circleMarker(latlon, {
+                renderer: mine_renderer,
                 color: "#ff00ff",
                 opacity: 0.7,
                 weight: 1,
                 radius: 5
-            }).addTo(mine_renderer);
+            });
 
             circle.bindPopup(`<pre>${JSON.stringify(
                 (({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location}))(props)
