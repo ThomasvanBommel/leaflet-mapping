@@ -71,14 +71,21 @@ window.onload = () => {
         console.log("loading finished");
         console.log(xhr.response.features);
 
-        let props = xhr.response.features[0].properties;
-        let latlon = L.latLng(props["Lat_WM84dd"], props["Lon_WM84dd"]);
-        let circle = 
-        console.log(latlon);
+        xhr.response.features.forEach(feature => {
+            let props = xhr.response.features[0].properties;
+            let latlon = L.latLng(props["Lat_WM84dd"], props["Lon_WM84dd"]);
 
-        L.circleMarker(latlon, {
-            color: "#ff00ff"
-        }).addTo(map);
+            L.circleMarker(latlon, {
+                color: "#ff00ff"
+            }).addTo(map);
+        });
+
+        
+        // console.log(latlon);
+
+        // L.circleMarker(latlon, {
+        //     color: "#ff00ff"
+        // }).addTo(map);
 
         // L.circleMarker()
 
