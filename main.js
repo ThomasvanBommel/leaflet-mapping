@@ -8,31 +8,31 @@ let mines;
 let mine_showing = [0, 99];
 
 window.onload = () => {
-    map = L.map("map").setView([45.20139, -63.24829], 8);
+    map = L.map("map", { preferCanvas: true }).setView([45.20139, -63.24829], 8);
     geo_json = L.geoJSON();
-    mines = L.geoJSON(undefined, {
-        onEachFeature: function (feature, layer) {
+    // mines = L.geoJSON(undefined, {
+    //     onEachFeature: function (feature, layer) {
 
-            layer.bindPopup(`<pre>${JSON.stringify((
-                ({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location})
-            )(feature.properties)).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</pre>`);
-            // l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
-        }
-    });
+    //         layer.bindPopup(`<pre>${JSON.stringify((
+    //             ({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location})
+    //         )(feature.properties)).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</pre>`);
+    //         // l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+    //     }
+    // });
 
-    try{
-        let params = new URLSearchParams(window.location.search);
-        let showing = params.get("show");
+    // try{
+    //     let params = new URLSearchParams(window.location.search);
+    //     let showing = params.get("show");
 
-        if(showing){
-            let split = showing.split(",");
-            mine_showing = [ parseInt(split[0]), parseInt(split[1])];
-        }
-    }catch{
-        console.error("unable to load url param 'show'");
-    }
+    //     if(showing){
+    //         let split = showing.split(",");
+    //         mine_showing = [ parseInt(split[0]), parseInt(split[1])];
+    //     }
+    // }catch{
+    //     console.error("unable to load url param 'show'");
+    // }
 
-    console.log("showing mines:", mine_showing);
+    // console.log("showing mines:", mine_showing);
 
     // Setup base maps
     let base_maps = {
@@ -61,16 +61,16 @@ window.onload = () => {
     // Setup overlays
     let overlays = {
         "GEO JSON": geo_json,
-        "Mines": mines
+        // "Mines": mines
     };
 
     let xhr = new XMLHttpRequest();
     xhr.onload = (res) => { 
-        console.log("loading finished -", xhr.response);
+        console.log("loading finished");
 
-        mines.addData(
-            xhr.response.features.slice(...mine_showing)
-        );
+        // mines.addData(
+        //     xhr.response.features.slice(...mine_showing)
+        // );
     };
     xhr.open("GET", "/leaflet-mapping/d010nssh.geojson", true);
     xhr.responseType = "json";
@@ -82,7 +82,7 @@ window.onload = () => {
 
     // Create blank geo_json
     overlays["GEO JSON"].addTo(map);
-    overlays["Mines"].addTo(map);
+    // overlays["Mines"].addTo(map);
 
     // Add scale bar
     L.control.scale().addTo(map);
