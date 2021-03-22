@@ -101,3 +101,10 @@ footer{
 .leaflet-control-scale.leaflet-control{
     bottom:4rem;
 }
+
+/* Clickable Popup */
+.popup{
+    max-width: 300px;
+    max-height: 80%;
+    overflow-y: scroll;
+}

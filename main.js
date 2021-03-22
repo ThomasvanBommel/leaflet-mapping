@@ -87,10 +87,10 @@ window.onload = () => {
             for(const [key, value] of Object.entries(props))
                 if(!!!value) delete props[key];
 
-            circle.bindPopup(`<pre>${JSON.stringify(
+            circle.bindPopup(`<div class="popup">${JSON.stringify(
                 props
                 // (({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location}))(props)
-            ).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</pre>`);
+            ).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</div>`);
         });
 
         
