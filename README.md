@@ -2,4 +2,4 @@
 
 Mapping application made using [Leaflet](https://leafletjs.com)
 
-## Auto Deployed [Here](https://thomasvanbommel.github.io/leaflet-mapping/)
+** This project is auto-deployed [here](https://thomasvanbommel.github.io/leaflet-mapping/)**
