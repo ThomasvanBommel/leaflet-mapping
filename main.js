@@ -8,7 +8,7 @@ let mines;
 let mine_showing = [0, 99];
 
 window.onload = () => {
-    map = L.map("map").setView([45.20139, -63.24829], 7);
+    map = L.map("map").setView([45.20139, -63.24829], 8);
     geo_json = L.geoJSON();
     mines = L.geoJSON(undefined, {
         onEachFeature: function (feature, layer) {
