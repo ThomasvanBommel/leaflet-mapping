@@ -90,7 +90,7 @@ window.onload = () => {
             let elements = "";
 
             Object.entries(props).forEach(([key, value]) => {
-                if(!!!value)
+                // if(!!!value)
                     elements += `<div><b>${ key }: </b>${ value }</div>`;
             })
 
