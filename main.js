@@ -74,10 +74,15 @@ window.onload = () => {
         xhr.response.features.forEach(feature => {
             let props = feature.properties;
             let latlon = L.latLng(props["Lat_WM84dd"], props["Lon_WM84dd"]);
-
-            L.circleMarker(latlon, {
-                color: "#ff00ff"
+            let circle = L.circleMarker(latlon, {
+                color: "#ff00ff",
+                opacity: 0.7,
+                weight: 1
             }).addTo(map);
+
+            circle.bindPopup(`<pre>${JSON.stringify((
+                ({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location})
+            )(props)).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</pre>`);
         });
 
         
