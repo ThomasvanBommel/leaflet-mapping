@@ -61,8 +61,11 @@ window.onload = () => {
             let elements = "<div class='popupContainer'><table class='popup'>";
 
             Object.entries(props).forEach(([key, value]) => {
-                if(!!value && !["Not Rated", "Unknown", "NOT INSPECTED"].includes(value))
-                    elements += `<tr><th>${ key }</th><td>${ value }</td></tr>`;
+                if(!!value && !["Not Rated", "Unknown", "NOT INSPECTED", "0"].includes(value)){
+                    elements += `<tr><th>${ key }</th><td>${ 
+                        value.startsWith("http") ? "<a href='" + value + "'>" + value + "</a>" : value
+                    }</td></tr>`;
+                }
             });
 
             circle.bindPopup(elements + "</table><div>");
