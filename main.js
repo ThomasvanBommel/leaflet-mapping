@@ -48,11 +48,11 @@ window.onload = () => {
     };
 
     // Add ns polygon to prejson
-    pre_json.addData(ns);
+    pre_json.addData({ ...ns });
 
     // Setup overlays
     let overlays = {
-        "Geo Json": geo_json,
+        "Custom Geo Json": geo_json,
         "Pre-made Geo Json": pre_json,
         "Abandoned Mines": mine_renderer
     };
