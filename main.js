@@ -1,4 +1,5 @@
 let map;
+// let renderer;
 let map_coord;
 let cur_coord;
 
@@ -9,6 +10,7 @@ let mine_showing = [0, 99];
 
 window.onload = () => {
     map = L.map("map", { preferCanvas: true }).setView([45.20139, -63.24829], 8);
+    // renderer = L.
     geo_json = L.geoJSON();
     // mines = L.geoJSON(undefined, {
     //     onEachFeature: function (feature, layer) {
@@ -67,6 +69,9 @@ window.onload = () => {
     let xhr = new XMLHttpRequest();
     xhr.onload = (res) => { 
         console.log("loading finished");
+        console.log(xhr.response.features);
+
+        // L.circleMarker()
 
         // mines.addData(
         //     xhr.response.features.slice(...mine_showing)
