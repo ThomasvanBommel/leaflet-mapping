@@ -77,7 +77,8 @@ window.onload = () => {
             let circle = L.circleMarker(latlon, {
                 color: "#ff00ff",
                 opacity: 0.7,
-                weight: 1
+                weight: 1,
+                radius: 5
             }).addTo(map);
 
             circle.bindPopup(`<pre>${JSON.stringify(
