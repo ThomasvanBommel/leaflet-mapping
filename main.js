@@ -64,7 +64,7 @@ window.onload = () => {
 
     // Setup overlays
     let overlays = {
-        "GEO JSON": geo_json,
+        "Geo Json": geo_json,
         "Abandoned Mines": mine_renderer
     };
 
@@ -82,7 +82,7 @@ window.onload = () => {
                 opacity: 0.7,
                 weight: 1,
                 radius: 5
-            });
+            }).addTo(map);
 
             circle.bindPopup(`<pre>${JSON.stringify(
                 (({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location}))(props)
