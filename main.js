@@ -62,8 +62,8 @@ window.onload = () => {
 
             Object.entries(props).forEach(([key, value]) => {
                 if(!!value && !["Not Rated", "Unknown", "NOT INSPECTED", "0"].includes(value)){
-                    if(typeof value === "string")
-                        value = value.startsWith("http") ? "<a href='" + value + "'>" + value + "</a>" : value;
+                    if(typeof value === "string" && value.startsWith("http"))
+                        value = "<a href='" + value + "'>" + value + "</a>";
 
                     elements += `<tr><th>${ key }</th><td>${ value }</td></tr>`;
                 }
@@ -236,6 +236,9 @@ function makeLineString(element){
             "coordinates": points
         });
 
+        // Log points
+        console.log(points);
+
         // Reset points
         points = [];
     }
@@ -270,6 +273,9 @@ function makePolygon(element){
             "type": "Polygon",
             "coordinates": [points]
         });
+
+        // Log points
+        console.log(points);
 
         // Reset points
         points = [];
