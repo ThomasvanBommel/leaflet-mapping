@@ -58,7 +58,7 @@ window.onload = () => {
                 radius: 5
             }).addTo(map);
 
-            let elements = "<div class='scrolloverflow'><table class='popup'>";
+            let elements = "<div class='popupContainer'><table class='popup'>";
 
             Object.entries(props).forEach(([key, value]) => {
                 if(!!value && !["Not Rated", "Unknown", "NOT INSPECTED"].includes(value))
