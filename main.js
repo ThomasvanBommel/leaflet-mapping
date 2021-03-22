@@ -84,8 +84,12 @@ window.onload = () => {
                 radius: 5
             }).addTo(map);
 
+            for(const [key, value] of Object.entries(props))
+                if(!!!value) delete props[key];
+
             circle.bindPopup(`<pre>${JSON.stringify(
-                (({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location}))(props)
+                props
+                // (({ShaftID, Name, County, S_Location}) => ({ShaftID, Name, County, S_Location}))(props)
             ).replace(/[\{\}"]/g,'').replace(/,/g, "<br>")}</pre>`);
         });
 
